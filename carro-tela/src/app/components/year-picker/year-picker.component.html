@@ -1,0 +1,6 @@
+<mat-form-field>
+    <mat-label>Selecione o ano</mat-label>
+    <mat-select name="ano" (selectionChange)="onYearSelected($event.value)">
+      <mat-option *ngFor="let ano of years" [value]="ano">{{ ano }}</mat-option>
+    </mat-select>
+</mat-form-field>

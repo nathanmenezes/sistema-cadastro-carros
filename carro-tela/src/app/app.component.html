@@ -1,0 +1,56 @@
+<div class="app-container">
+      <nav>
+        <span>Total de Elementos - {{infoCarros.length}}</span>
+        <h1>SAVE'S CAR</h1>
+        <button (click)="toggleForm(true)" (click)="toggleFormCad()">Cadastrar <br>Carro</button>
+      </nav>
+      <div class="filter-container">
+        <form class="example-form filter-form">
+          <div class="filter-inputs">
+            <mat-form-field>
+              <mat-label>Marca</mat-label>
+              <mat-select  [(ngModel)]="filtros.marca" name="marca">
+                <mat-option *ngFor="let marca of marcas" [value]="marca">
+                  {{ marca }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Modelo</mat-label>
+              <input matInput placeholder="Ex. Cayenne" [(ngModel)]="filtros.modelo" name="modelo">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Selecione o ano</mat-label>
+              <mat-select [(ngModel)]="filtros.ano" name="ano">
+                <mat-option *ngFor="let ano of years" [value]="ano">{{ ano }}</mat-option>
+              </mat-select>
+          </mat-form-field>
+          </div>
+          <div class="filter-btn">
+            <button mat-raised-button (click)="filtrarCarros()">Filtrar</button>
+            <button mat-raised-button (click)="limparFiltros()">Limpar Filtros</button>
+          </div>
+        </form>
+      </div>
+    <table>
+      <thead>
+        <th>Ano</th>
+        <th>Marca</th>
+        <th>Modelo</th>
+        <th>Ações</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let carro of infoCarros">
+          <td>{{carro.ano}}</td>
+          <td>{{carro.marca}}</td>
+          <td>{{carro.modelo}}</td>
+          <td class="tb-btn">
+            <button id="edit-btn" (click)="toggleForm(false)" (click)="pegarId(carro.id)" (click)="preencherForm(carro.id)">Editar</button>
+            <button id="delete-btn" (click)="pegarId(carro.id)" (click)="deletarCarro()">Deletar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <app-form-cadastro *ngIf="showForm" class="form"></app-form-cadastro>
+    <app-notification *ngIf="showNotification" class="notification"></app-notification>
+</div>

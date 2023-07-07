@@ -1,0 +1,22 @@
+<form >
+    <mat-icon class="close-btn" (click)="closeForm()">close</mat-icon>
+    <h2 *ngIf="tipoForm">Cadastrar Carro</h2>
+    <h2 *ngIf="!tipoForm">Editar Carro</h2>
+    <div class="form-inputs">
+        <div>
+            <label for="marca">Marca:</label>
+            <input type="text" id="marca" name="marca" [(ngModel)]="carro.marca" required>
+        </div>
+        <div>
+            <label for="modelo">Modelo:</label>
+            <input type="text" id="modelo" name="modelo" [(ngModel)]="carro.modelo" required>
+        </div>
+        <div>
+            <label for="ano">Ano:</label>
+            <input type="number" id="ano" name="ano" [(ngModel)]="carro.ano" required>
+        </div>
+    </div>
+    <button type="submit" *ngIf="tipoForm" (click)="cadastroForm()">Cadastrar Carro</button>
+    <button type="submit" *ngIf="!tipoForm" (click)="editarForm()">Editar Carro</button>
+</form>
+
